@@ -5,8 +5,11 @@ $Ping = Ping-MultipleHosts -StartAddress 172.16.10.1 -EndAddress 172.16.11.254
 
 Ping-MultipleHosts dc06,dc01 -DontFragment -BufferSize 1400 -TimeOut 1000
 
+
 $Servers = Get-ADComputer -Filter {operatingsystem -like 'windows server*'} | select -ExpandProperty name
-Ping-MultipleHosts -HostName $servers
+
+Ping-MultipleHosts -HostName $Servers
+
 
 Get-ADComputer -Filter {operatingsystem -like 'windows server*'} | select -ExpandProperty name  | Ping-MultipleHosts
 
